@@ -1,11 +1,15 @@
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { UserButton } from '@clerk/nextjs';
+'use client';
+import { useState, useEffect } from 'react';
+
+import { useStoreModal } from '@/hooks/useStore-modal';
 
 export default function Home() {
-  return (
-    <div className="p-4 absolute top-0 right-0">
-      <UserButton afterSignOutUrl="/sign-in" />
-    </div>
-  );
+  const onOpen = useStoreModal((state) => state.onOpen);
+  const isOpen = useStoreModal((state) => state.isOpen);
+
+  useEffect(() => {
+    if (!isOpen) onOpen();
+  }, [isOpen, onOpen]);
+
+  return <div className="p-4 text-lg font-bold">Root Page</div>;
 }
