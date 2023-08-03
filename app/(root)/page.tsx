@@ -11,5 +11,5 @@ export default function Home() {
     if (!isOpen) onOpen();
   }, [isOpen, onOpen]);
 
-  return <div className="p-4 text-lg font-bold">Root Page</div>;
+  return null;
 }
