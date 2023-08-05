@@ -20,8 +20,8 @@ import { Input } from '@/components/ui/input';
 import Heading from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
-import { AlertModal } from './modals/alert-modal';
-import { ApiAlert } from './ui/alert-api';
+import { AlertModal } from '@/components/modals/alert-modal';
+import { ApiAlert } from '@/components/ui/alert-api';
 import { useOrigin } from '@/hooks/useOrigin';
 
 const formSchema = z.object({
