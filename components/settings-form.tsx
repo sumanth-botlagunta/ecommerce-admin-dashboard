@@ -89,6 +89,7 @@ export const SettingsForm: React.FC<SettingsFormProps> = ({ intialData }) => {
       });
     } finally {
       setLoading(false);
+      setIsOpen(false);
     }
   };
 
