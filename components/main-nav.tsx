@@ -33,20 +33,22 @@ export const MainNav = ({
       className={cn('flex items-center sp lg:space-x-6', className)}
       {...props}
     >
-      {routes.map((route) => (
-        <Link
-          key={route.href}
-          href={route.href}
-          className={cn(
-            'text-sm transition-colors font-medium hover:text-primary',
-            route.active
-              ? 'text-black dark:text-white'
-              : 'text-muted-foreground'
-          )}
-        >
-          {route.label}
-        </Link>
-      ))}
+      <div className=" flex gap-2">
+        {routes.map((route) => (
+          <Link
+            key={route.href}
+            href={route.href}
+            className={cn(
+              'text-sm transition-colors font-medium hover:text-primary',
+              route.active
+                ? 'text-black dark:text-white'
+                : 'text-muted-foreground'
+            )}
+          >
+            {route.label}
+          </Link>
+        ))}
+      </div>
     </nav>
   );
 };
