@@ -95,7 +95,7 @@ model Product {
   isFeatured Boolean  @default(false)
   IsArchived Boolean  @default(false)
   createAt   DateTime @default(now())
-  UpdateAt   DateTime @updatedAt
+  updateAt   DateTime @updatedAt
 
   images     Image[]
   orderitems OrderItem[] @relation("ProductToOrderItem")
