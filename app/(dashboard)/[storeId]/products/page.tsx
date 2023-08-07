@@ -3,6 +3,7 @@ import moment from 'moment';
 
 import ProductDisplay from '@/components/product/main';
 import { ProductColumn } from '@/components/product/columns';
+import { formatter } from '@/lib/utils';
 
 const Products = async ({ params }: { params: { storeId: string } }) => {
   const products = await prismadb.product.findMany({
@@ -29,8 +30,9 @@ const Products = async ({ params }: { params: { storeId: string } }) => {
   const formatedProducts: ProductColumn[] = products.map((item) => ({
     id: item.id,
     name: item.name,
-    price: item.price,
+    price: formatter.format(item.price.toNumber()),
     isFeatured: item.isFeatured,
+    isArchived: item.IsArchived,
     category: item.category.name,
     size: item.size.name,
     color: item.color.name,

@@ -1,15 +1,15 @@
 'use client';
 
 import { ColumnDef } from '@tanstack/react-table';
-import Image from 'next/image';
 
 import { CellAction } from '@/components/product/cell-action';
 
 export type ProductColumn = {
   id: string;
   name: string;
-  price: number;
+  price: string;
   isFeatured: boolean;
+  isArchived: boolean;
   category: string;
   size: string;
   color: string;
@@ -26,11 +26,6 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: 'Price',
   },
   {
-    accessorKey: 'isFeatured',
-    header: 'Featured',
-    cell: ({ row }) => (row.original.isFeatured ? 'Yes' : 'No'),
-  },
-  {
     accessorKey: 'category',
     header: 'Category',
   },
@@ -41,6 +36,16 @@ export const columns: ColumnDef<ProductColumn>[] = [
   {
     accessorKey: 'color',
     header: 'Color',
+  },
+  {
+    accessorKey: 'isFeatured',
+    header: 'Featured',
+    cell: ({ row }) => (row.original.isFeatured ? 'Yes' : 'No'),
+  },
+  {
+    accessorKey: 'isArchived',
+    header: 'Archived',
+    cell: ({ row }) => (row.original.isArchived ? 'Yes' : 'No'),
   },
   {
     accessorKey: 'updateAt',

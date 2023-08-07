@@ -7,11 +7,11 @@ const ProductSetup = async ({
   params: { productId: string; storeId: string };
 }) => {
   const product = await prismadb.product.findUnique({
-    where: { id: params.productId },
+    where: {
+      id: params.productId,
+    },
     include: {
-      category: true,
-      size: true,
-      color: true,
+      images: true,
     },
   });
 

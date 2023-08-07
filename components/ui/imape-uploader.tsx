@@ -35,7 +35,7 @@ const ImageUploader: React.FC<imageUploadProps> = ({
         throw new Error('Failed to Upload');
       }
 
-      const formats = ['jpeg', 'jpg', 'png', 'svg'];
+      const formats = ['jpeg', 'jpg', 'png', 'svg', 'avif', 'webp'];
       if (!formats.includes(result.info.format)) {
         throw new Error('format not supported');
       }

@@ -68,7 +68,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
   const params = useParams();
   const router = useRouter();
 
-  const [open, setOpen] = useState(false);
+  const [isopen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const title = initialData ? 'Edit product' : 'Create product';
@@ -139,30 +139,20 @@ export const ProductForm: React.FC<ProductFormProps> = ({
       });
     } finally {
       setLoading(false);
-      setOpen(false);
+      setIsOpen(false);
     }
   };
 
   return (
     <>
       <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
+        isOpen={isopen}
+        onClose={() => setIsOpen(false)}
         onConfirm={onDelete}
         loading={loading}
       />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
-        {initialData && (
-          <Button
-            disabled={loading}
-            variant="destructive"
-            size="sm"
-            onClick={() => setOpen(true)}
-          >
-            <Trash className="h-4 w-4" />
-          </Button>
-        )}
       </div>
       <Separator />
       <Form {...form}>
@@ -369,9 +359,21 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {action}
-          </Button>
+          <div className="flex flex-row-reverse gap-x-2 px-4">
+            <Button type="submit" disabled={loading} variant="default">
+              {action}
+            </Button>
+            {initialData && (
+              <Button
+                disabled={loading}
+                type="button"
+                variant="destructive"
+                onClick={() => setIsOpen(true)}
+              >
+                delete
+              </Button>
+            )}
+          </div>
         </form>
       </Form>
     </>
