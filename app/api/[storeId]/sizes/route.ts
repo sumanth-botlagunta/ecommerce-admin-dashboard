@@ -3,31 +3,6 @@ import { auth } from '@clerk/nextjs';
 import { Size } from '@prisma/client';
 import { NextResponse } from 'next/server';
 
-export async function GET(
-  req: Request,
-  {
-    params,
-  }: {
-    params: { storeId: string };
-  }
-) {
-  try {
-    if (!params.storeId) {
-      return new NextResponse('StoreId required', { status: 400 });
-    }
-
-    const sizes = await prismadb.size.findMany({
-      where: {
-        storeId: params.storeId,
-      },
-    });
-
-    return NextResponse.json(sizes);
-  } catch (error) {
-    console.log('[GET /api/storeId/sizes] error: ', error);
-    return new NextResponse('Something went wrong', { status: 500 });
-  }
-}
 
 export async function POST(
   req: Request,
@@ -70,6 +45,31 @@ export async function POST(
     return NextResponse.json(size);
   } catch (error) {
     console.log('[POST /api/storeId/sizes] error: ', error);
+    return new NextResponse('Something went wrong', { status: 500 });
+  }
+}
+export async function GET(
+  req: Request,
+  {
+    params,
+  }: {
+    params: { storeId: string };
+  }
+) {
+  try {
+    if (!params.storeId) {
+      return new NextResponse('StoreId required', { status: 400 });
+    }
+
+    const sizes = await prismadb.size.findMany({
+      where: {
+        storeId: params.storeId,
+      },
+    });
+
+    return NextResponse.json(sizes);
+  } catch (error) {
+    console.log('[GET /api/storeId/sizes] error: ', error);
     return new NextResponse('Something went wrong', { status: 500 });
   }
 }
