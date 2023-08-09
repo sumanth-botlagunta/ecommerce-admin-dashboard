@@ -4,6 +4,7 @@ import { MainNav } from '@/components/main-nav';
 import StoreSwitcher from '@/components/store-switcher';
 import { redirect } from 'next/navigation';
 import prismadb from '@/lib/prismaDB';
+import { ModeToggle } from './ui/mode-toggle';
 
 const Navbar = async () => {
   const { userId } = auth();
@@ -23,7 +24,8 @@ const Navbar = async () => {
           <StoreSwitcher items={stores} />
           <MainNav />
         </div>
-        <div className="flex ">
+        <div className="flex gap-4 items-center">
+          <ModeToggle />
           <UserButton afterSignOutUrl="/" />
         </div>
       </div>
