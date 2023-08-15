@@ -129,9 +129,8 @@ model Image {
 
 model Order {
   id       String   @id @default(uuid())
-  name     String
-  address  String
-  phone    String
+  address  String @default("")
+  phone    String @default("")
   isPaid   Boolean  @default(false)
   createAt DateTime @default(now())
   updateAt DateTime @updatedAt
