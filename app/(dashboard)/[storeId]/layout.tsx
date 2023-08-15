@@ -18,9 +18,9 @@ export default async function DashboardLayout({
   if (!store) redirect('/');
 
   return (
-    <>
+    <div>
       <Navbar />
-      {children}
-    </>
+      <div className="mt-10">{children}</div>
+    </div>
   );
 }

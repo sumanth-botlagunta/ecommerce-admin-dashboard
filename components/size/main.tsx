@@ -8,12 +8,13 @@ import { Separator } from '@/components/ui/separator';
 import { SizeColumn, columns } from '@/components/size/columns';
 import { DataTable } from '@/components/ui/data-table';
 import { ApiList } from '../ui/api-list';
+import React from 'react';
 
 const SizeDisplay = ({ sizes }: { sizes: SizeColumn[] }) => {
   const router = useRouter();
   const params = useParams();
   return (
-    <>
+    <div className="w-full mx-auto">
       <div className="flex justify-between">
         <Heading title="Sizes" description="Manage sizes for your store" />
         <Button onClick={() => router.push(`/${params.storeId}/sizes/new`)}>
@@ -26,7 +27,7 @@ const SizeDisplay = ({ sizes }: { sizes: SizeColumn[] }) => {
       <Heading title="API" description="API Calls for Sizes" />
       <Separator />
       <ApiList entityIdName="sizeId" entityName="sizes" />
-    </>
+    </div>
   );
 };
 

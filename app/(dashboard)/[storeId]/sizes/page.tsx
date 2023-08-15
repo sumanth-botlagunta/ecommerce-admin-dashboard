@@ -29,8 +29,8 @@ const Sizes = async ({ params }: { params: { storeId: string } }) => {
   }));
 
   return (
-    <div className="flex flex-col">
-      <div className="flex-1 p-8">
+    <div className="flex flex-col w-screen">
+      <div className="flex-1 p-8 w-full mx-auto">
         <SizeDisplay sizes={formatedSizes} />
       </div>
     </div>

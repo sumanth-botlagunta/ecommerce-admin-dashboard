@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
@@ -43,6 +44,7 @@
     "react-color": "^2.19.3",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.45.2",
+    "recharts": "^2.7.3",
     "sharp": "^0.32.4",
     "stripe": "^12.18.0",
     "tailwind-merge": "^1.14.0",

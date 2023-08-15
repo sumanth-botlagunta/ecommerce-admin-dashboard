@@ -18,7 +18,7 @@ const Navbar = async () => {
   });
 
   return (
-    <div className="border-b border-gray-700/10">
+    <div className="border-b border-gray-700/10 max-w-screen">
       <div className="flex items-center justify-between px-4 h-16 w-full gap-2">
         <div className="flex gap-2">
           <StoreSwitcher items={stores} />
