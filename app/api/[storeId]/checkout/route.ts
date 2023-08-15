@@ -6,8 +6,8 @@ import { NextResponse } from 'next/server';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-  'Access-Control-Allow-Methods': 'POST, GET, PUT, DELETE, PATCH, OPTIONS',
 };
 
 export async function OPTIONS() {
@@ -44,7 +44,7 @@ export async function POST(
           name: product.name,
           images: [product.images[0].url],
         },
-        unit_amount: product.price.toNumber() * 100,
+        unit_amount: Math.floor(product.price.toNumber() * 100),
       },
     });
   });
