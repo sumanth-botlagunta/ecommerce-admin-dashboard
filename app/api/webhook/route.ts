@@ -4,24 +4,18 @@ import { NextResponse } from 'next/server';
 
 import { stripe } from '@/lib/stripe';
 import prismadb from '@/lib/prismaDB';
-import { buffer } from 'node:stream/consumers';
-import { NextApiRequest, NextApiResponse } from 'next';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
-  }
-
-  const buf = await buffer(req);
+export async function POST(req: Request) {
+  const body = await req.text();
   const signature = headers().get('Stripe-Signature') as string;
 
   let event: Stripe.Event;
 
   try {
     event = stripe.webhooks.constructEvent(
-      buf.toString(),
+      body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET! as string
     );
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
@@ -57,6 +51,6 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
     });
   }
 
-  return res.status(200).json({ received: true });
+  return new NextResponse(null, { status: 200 });
 }
 
