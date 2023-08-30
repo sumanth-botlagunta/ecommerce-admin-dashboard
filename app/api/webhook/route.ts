@@ -61,3 +61,5 @@ export const config = {
     bodyParser: false,
   },
 };
+
+export const runtime = 'nodejs';
