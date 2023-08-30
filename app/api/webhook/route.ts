@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET! as string
+      process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (error: any) {
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
@@ -49,8 +49,6 @@ export async function POST(req: Request) {
         orderItems: true,
       },
     });
-
-    const productIds = order.orderItems.map((orderItem) => orderItem.productId);
   }
 
   return new NextResponse(null, { status: 200 });
