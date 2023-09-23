@@ -35,7 +35,13 @@ export async function POST(
   });
   const line_items: Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-  products.forEach((product) => {
+  products.forEach(async (product) => {
+    const dollarPrice = Math.floor(product.price.toNumber() * 100);
+    const exchangeRates = await fetch(
+      `https://api.exchangeratesapi.io/v1/latest?access_key=${process.env.EXCHANGE_RATES_API_KEY}&from=USD&to=INR&amount=${dollarPrice}`
+    );
+    const exchangeRatesData = await exchangeRates.json();
+    const inrPrice = exchangeRatesData?.result || dollarPrice * 90;
     line_items.push({
       quantity: 1,
       price_data: {
@@ -44,7 +50,7 @@ export async function POST(
           name: product.name,
           images: [product.images[0].url],
         },
-        unit_amount: Math.floor(product.price.toNumber() * 100),
+        unit_amount: inrPrice,
       },
     });
   });
